@@ -1,0 +1,38 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 50px;
+}
+
+table {
+    margin-left: 20px;
+}
+
+.glyphiconPositionRight {
+    float: right;
+}
+.glyphicon-right-close {
+    margin-right: 30px;
+    float: right;
+}
+
+.glyphiconPositionLeft {
+    float: left;
+}
+
+.white-color {
+    color: white;
+}
+
+.blue-color {
+    color: steelblue;
+}
+
+/* Hide for mobile, show later */
+.sideHide {
+    display: none;
+}
+
+
