@@ -3,7 +3,8 @@ input.form-control {
 }
 
 body {
-    padding-top: 50px;
+    padding-top: 60px;
+    padding-bottom: 50px;
 }
 
 table {
@@ -13,10 +14,7 @@ table {
 .glyphiconPositionRight {
     float: right;
 }
-.glyphicon-right-close {
-    margin-right: 30px;
-    float: right;
-}
+
 
 .glyphiconPositionLeft {
     float: left;
@@ -36,3 +34,24 @@ table {
 }
 
 
+.relative-position {
+    position: relative;
+}
+.absolute-position {
+    position: absolute;
+}
+.list-element-menu {
+    top: 0;
+    right: 0;
+    z-index: 10;
+    background-color: white;
+}
+.zero-right-padding {
+    padding-right: 0;
+}
+
+
+#list > ul > li {
+    margin: 20px;
+
+}
