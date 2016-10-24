@@ -1,0 +1,40 @@
+<nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+        <a class="navbar-brand glyphiconPositionLeft" href="#/user/{{model.userId}}/website">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="navbar-brand col-m-6 glyphiconPositionRight" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
+            <span class=" glyphicon glyphicon-plus"></span>
+            <div class="navbar-header">
+                <a class="navbar-brand white-color">Pages</a>
+            </div>
+        </a>
+    </div>
+</nav>
+
+
+<div id="list" class="container-fluid">
+    <ul class="list-unstyled">
+        <li ng-repeat = "page in model.pages">
+
+            <a href = "#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget " class="blue-color">
+                {{page.name}}
+            </a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/">
+                <span class="glyphicon glyphicon-cog glyphiconPositionRight"></span>
+            </a>
+            <a href="#">
+                <span class="glyphicon glyphicon-play glyphiconPositionRight-leave10"></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<nav class="navbar navbar-fixed-bottom navbar-default">
+    <div class="container-fluid">
+        <a class="navbar-brand glyphiconPositionRight" href="#/user/{{model.userId}}">
+            <span class="glyphicon glyphicon-user blue-color"></span>
+        </a>
+
+    </div>
+</nav>

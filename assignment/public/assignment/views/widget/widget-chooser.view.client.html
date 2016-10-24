@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Choose Widget</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-</head>
-
-<body>
-
 <nav class="navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
-        <a class="navbar-brand glyphiconPositionLeft" href="widget-list.html">
+        <a class="navbar-brand glyphiconPositionLeft"
+           href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="navbar-brand glyphiconPositionRight" href="widget-list.html">
+        <a class="navbar-brand glyphiconPositionRight" href="#">
             <div class="navbar-header">
                 <a class="navbar-brand white-color" href="#">Choose Widget</a>
             </div>
@@ -27,9 +15,11 @@
 
 <div id="list" class="container-fluid">
     <ul class="list-unstyled">
-        <li>
-            <a href="widget-heading.html" class="blue-color">Header</a>
+
+        <li class="blue-color">
+            <a ng-click="model.createWidget('HEADER')">Header</a>
         </li>
+
         <li>
             <a class="blue-color">Label</a>
         </li>
@@ -46,10 +36,10 @@
             <a class="blue-color">Button</a>
         </li>
         <li>
-            <a href="widget-image.html" class="blue-color">Image</a>
+            <a ng-click="model.createWidget('IMAGE')"class="blue-color">Image</a>
         </li>
         <li>
-            <a href="widget-youtube.html" class="blue-color">YouTube</a>
+            <a ng-click="model.createWidget('YOUTUBE')" class="blue-color">YouTube</a>
         </li>
         <li>
             <a class="blue-color">Date Table</a>
@@ -61,11 +51,9 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-        <a class="navbar-brand glyphiconPositionRight" href="profile.html">
+        <a class="navbar-brand glyphiconPositionRight" href="#/user/{{model.uid}}">
             <span class="glyphicon glyphicon-user blue-color"></span>
         </a>
     </div>
 </nav>
 
-</body>
-</html>

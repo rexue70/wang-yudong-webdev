@@ -1,0 +1,62 @@
+<nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-3 navbar-collapsed">
+                <a class="navbar-brand glyphiconPositionLeft white-color" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand white-color hidden-xs">Pages</a>
+            </div>
+            <div class="col-sm-9 col-md-9 navbar-collapsed">
+                <a class="navbar-brand white-color glyphiconPositionLeft white-color">Edit Page</a>
+                <a class="navbar-brand glyphiconPositionRight white-color"
+                   ng-click="model.updatePage(model.page)">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 hidden-xs">
+            <ul class="list-unstyled left-colon">
+                <li ng-repeat="page in model.pages">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget"
+                       class="gray-color">
+                        {{page.name}}
+                    </a>
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/">
+                        <span class="glyphicon glyphicon-cog glyphiconPositionRight"></span>
+                    </a>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-play glyphiconPositionRight-leave10"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-9 col-md-9">
+            {{model.page}}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input ng-model = "model.page.name" type="text" class="form-control" id="name" placeholder="Blog Post">
+            </div>
+            <div class="form-group">
+                <label for="title">Description</label>
+                <input ng-model = "model.page.description" type="text" class="form-control" id="title" placeholder="Page Title">
+            </div>
+            <a class="btn btn-danger  btn-block" ng-click = "model.deletePage(model.page._id)">Delete</a>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-fixed-bottom navbar-default">
+    <div class="container-fluid">
+        <a class="navbar-brand glyphiconPositionRight" href="#/user/{{model.userId}}">
+            <span class="glyphicon glyphicon-user blue-color"></span>
+        </a>
+
+    </div>
+</nav>

@@ -1,0 +1,72 @@
+<nav class="navbar navbar-fixed-top navbar-light bg-primary">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-3 navbar-collapsed">
+                <a class="navbar-brand glyphiconPositionLeft white-color" href="#/user/{{model.userId}}/website/">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand white-color hidden-xs" href="#">Websites</a>
+            </div>
+            <div class="col-sm-9 col-md-9 navbar-collapsed">
+                <a class="navbar-brand white-color glyphiconPositionLeft white-color" href="#">Edit Websites</a>
+                <a class="navbar-brand glyphiconPositionRight white-color"
+                   ng-click="model.updateWebsite(model.website)">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-3 col-md-3 hidden-xs">
+
+            <ul class="list-unstyled left-colon">
+                <li ng-repeat="website in model.websites">
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}/page " class="blue-color">
+                        {{website.name}}
+                    </a>
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}">
+                        <span class="glyphicon glyphicon-cog glyphiconPositionRight"></span>
+                    </a>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-play glyphiconPositionRight-leave10"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-sm-9 col-md-9">
+            <label for="name">Website Name</label>
+            <input ng-model="model.website.name" type="text"
+                   class="form-control"
+                   id="name"
+                   placeholder="Blogger"/>
+
+            <div class="form-group">
+                <label for="description">Website Description</label>
+                <textarea ng-model="model.website.description" class="form-control" rows="5" id="description"
+                          placeholder="Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries."></textarea>
+            </div>
+
+            <a ng-click="model.updateWebsite(model.website)"
+               class="btn btn-primary  btn-block">Update</a>
+
+            <a ng-click="model.deleteWebsite(model.website._id)"
+               class="btn btn-danger  btn-block">Delete</a>
+
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-fixed-bottom bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand glyphiconPositionRight white-color" href="#/user/{{model.userId}}">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
+
+

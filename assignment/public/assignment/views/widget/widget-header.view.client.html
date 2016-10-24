@@ -1,0 +1,24 @@
+
+
+<div class="container">
+    <br>
+    <br>
+    <form>
+        <div class="form-group">
+            {{model.widget}}
+            <label for="name">Name</label>
+            <input ng-model = "model.widget.widgetType" type="text" class="form-control" id="name" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="title">Text</label>
+            <input ng-model = "model.widget.text" type="text" class="form-control" id="title" placeholder="US Senate Reaches Compromise on Emergence">
+        </div>
+        <div class="form-group">
+            <label for="size">Size</label>
+            <input ng-model = "model.widget.size" type="text" class="form-control" id="size" placeholder="3">
+        </div>
+        <a class="btn btn-danger  btn-block"
+           ng-click = "model.deleteWidget(model.widget._id)">Delete</a>
+    </form>
+</div>
+

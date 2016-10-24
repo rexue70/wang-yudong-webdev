@@ -15,6 +15,10 @@ table {
     float: right;
 }
 
+.glyphiconPositionRight-leave10 {
+    padding-right: 10px;
+    float: right;
+}
 
 .glyphiconPositionLeft {
     float: left;
@@ -26,6 +30,10 @@ table {
 
 .blue-color {
     color: steelblue;
+}
+
+.gray-color {
+    color: gray;
 }
 
 /* Hide for mobile, show later */
@@ -53,5 +61,8 @@ table {
 
 #list > ul > li {
     margin: 20px;
+}
 
+.left-colon > li {
+    margin: 15px;
 }

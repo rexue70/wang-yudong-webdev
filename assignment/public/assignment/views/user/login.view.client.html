@@ -1,0 +1,20 @@
+
+<div class="container">
+    <div ng-show = "model.error" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        {{model.error}}
+    </div>
+    <h1>Login</h1>
+    <input type="text"
+           ng-model = "model.user.username"
+           class="form-control"
+           placeholder="username"/>
+    <input type="password"
+           ng-model = "model.user.password"
+           class="form-control"
+           placeholder="password"/>
+    <a ng-click ="model.login(user)" class="btn btn-primary btn-block">Login</a>
+    <a class="btn btn-success btn-block"
+       href="#register">Register</a>
+</div>
