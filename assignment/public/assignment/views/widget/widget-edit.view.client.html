@@ -13,7 +13,7 @@
 </nav>
 
 <div class="container-fluid">
-    <form>
+    <form ng-if="model.widget.widgetType">
         <div ng-include="'views/widget/widget-'+ model.widget.widgetType.toLowerCase() + '.view.client.html'"></div>
     </form>
 </div>

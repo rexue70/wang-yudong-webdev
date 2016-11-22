@@ -9,17 +9,22 @@
         var vm = this;
         vm.login = login;
 
-        function login(user) {
-            if (vm.user == null) {
-                vm.error = "No such user"
-            } else {
-                var user = UserService.findUserByCredentials(vm.user.username, vm.user.password);
-                if (user === null) {
-                    vm.error = "No such user"
-                } else {
-                    $location.url("/user/" + user._id);
-                }
-            }
+        function login(username, password) {
+            var promise = UserService.findUserByCredentials(username, password);
+            promise
+                .success(function (user) {
+                    console.log("it is successful");
+                    console.log(user);
+                    if (user === '0') {
+                        vm.error = "No such user"
+                    } else {
+                        $location.url("/user/" + user._id);
+                    }
+                })
+                .error(function (user) {
+                    console.log(user);
+                });
+
         }
     }
 
@@ -31,26 +36,60 @@
             if (user.password != user.password2) {
                 vm.error = "Your password is different, please type again!"
             } else {
-                user._id = (new Date()).getTime();
-                UserService.createUser(user);
-                $location.url("/user/" + user._id);
+                UserService
+                    .createUser(user.username, user.password)
+                    .success(function (user) {
+                        $location.url("/user/" + user._id);
+                    })
+                    .error(function (error) {
+                        vm.error = "Can not create the user";
+                    });
+
             }
         }
     }
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($location, $routeParams, UserService) {
         var vm = this;
 
         vm.userId = parseInt($routeParams.uid);
-        console.log(vm.userId);
+
+
+        vm.updateUser = updateUser;
+        vm.unregisterUser = unregisterUser;
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
+            UserService
+                .findUserById(vm.userId)
+                .success(function (user) {
+                    if (user != '0') {
+                        vm.user = user;
+                    }
+                })
+                .error(function () {
+
+                });
         }
 
         init();
-        console.log(vm.user);
 
 
+        function updateUser() {
+            console.log(vm.user);
+
+            UserService.updateUser(vm.user);
+        }
+
+        function unregisterUser() {
+            UserService
+                .unregisterUser(vm.user._id)
+                .success(function () {
+                    $location.url("/login");
+                })
+                .error(function () {
+
+                });
+            
+        }
     }
 
 

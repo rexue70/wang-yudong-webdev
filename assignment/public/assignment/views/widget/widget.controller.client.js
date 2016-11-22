@@ -12,13 +12,21 @@
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
 
-
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
         vm.checkSafeImageUrl = checkSafeImageUrl;
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+            // var widgets2 = $(".wam-widgets");
+            // console.log(widgets2);
+            WidgetService
+                .findWidgetsByPageId(vm.pid)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                });
+
         }
+
+
 
         init();
 
@@ -45,21 +53,22 @@
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
-        vm.tmp =  {"_id": null, "widgetType": null, "pageId": null, "size": null, "text": null};
+        vm.widget = {"_id": null, "widgetType": null, "pageId": null, "size": null, "text": null};
         vm.createWidget = createWidget;
 
         function createWidget(widgetType) {
-            widget = vm.tmp;
-            widget.widgetType = widgetType;
-            console.log("create new widget");
-            widget._id = (new Date()).getTime();
-            widget.pageId = vm.pid;
-            WidgetService.createWidget(widget);
+            vm.widget.widgetType = widgetType;
+            vm.widget._id = (new Date()).getTime();
+            vm.widget.pageId = vm.pid;
 
-            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + widget._id);
+            WidgetService
+                .createWidget(vm.widget)
+                .success(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + vm.widget._id);
+                });
         }
     }
-    
+
     function EditWidgetController($routeParams, WidgetService, $location) {
 
         var vm = this;
@@ -67,29 +76,38 @@
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
-
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
-        function init() {
-            vm.widget = WidgetService.findWidgetById(vm.wgid);
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
-        }
-        init();
 
+
+        function init() {
+            WidgetService
+                .findWidgetById(vm.wgid)
+                .success(function (widget) {
+                    vm.widget = widget
+                });
+            WidgetService
+                .findWidgetsByPageId(vm.pid)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                });
+        }
+
+        init();
         function updateWidget(widget) {
-            WidgetService.updateWidget(widget);
-            console.log("I am here!!");
-            console.log(vm.widget);
-            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/");
+            WidgetService
+                .updateWidget(widget)
+                .success(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/");
+                });
         }
 
         function deleteWidget(wgid) {
-            WidgetService.deleteWidget(wgid);
-            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/");
+            WidgetService
+                .deleteWidget(wgid)
+                .success(function () {
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/");
+                });
         }
-
-
-
-
     }
 })();

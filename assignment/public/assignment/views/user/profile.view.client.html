@@ -1,9 +1,9 @@
 <nav class="navbar navbar-fixed-top navbar-light bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand col-m-6 glyphiconPositionRight white-color" href="#/user/{{model.user._id}}">
+        <a ng-click = "model.updateUser()" class="navbar-brand col-m-6 glyphiconPositionRight white-color">
             <span class=" glyphicon glyphicon-ok"></span></a>
         <div class="navbar-header">
-            <a class="navbar-brand white-color" href="#">Project name</a>
+            <a class="navbar-brand white-color">Project name</a>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+            <input type="email" class="form-control" id="email" placeholder="The homework assignment database didn't have a email field">
         </div>
         <div class="form-group">
             <label for="first-name">First Name</label>
@@ -36,6 +36,8 @@
        href="#/user/{{model.user._id}}/website">Websites</a>
     <a class="btn btn-danger  btn-block"
        href="#login">Logout</a>
+    <a class="btn btn-warning  btn-block"
+       ng-click = "model.unregisterUser()">Unregister</a>
 </div>
 
 <nav class="navbar navbar-fixed-bottom bg-primary">

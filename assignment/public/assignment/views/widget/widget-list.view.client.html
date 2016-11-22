@@ -1,9 +1,11 @@
+
 <nav class="navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
         <a class="navbar-brand glyphiconPositionLeft" href="#/user/{{model.uid}}/website/{{model.wid}}/page">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="navbar-brand col-m-6 glyphiconPositionRight" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
+        <a class="navbar-brand col-m-6 glyphiconPositionRight"
+           href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
             <span class=" glyphicon glyphicon-plus"></span>
             <div class="navbar-header">
                 <a class="navbar-brand white-color" href="#">Widgets</a>
@@ -11,47 +13,46 @@
         </a>
     </div>
 </nav>
-
-<div class="container-fluid">
-    <div class="list-group relative-position zero-right-padding">
-
-        <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets">
-
-            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"
-               class="glyphiconPositionRight">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-
-            <div ng-switch="widget.size"  ng-switch-when="HEADER">
-                <ng-include src="widget-heading.view.client.html"></ng-include>
-                <h1 ng-switch-when="1">{{widget.text}}</h1>
-                <h1 ng-switch-when="2">{{widget.text}}</h1>
-                <h1 ng-switch-when="3">{{widget.text}}</h1>
-                <h1 ng-switch-when="4">{{widget.text}}</h1>
-                <h1 ng-switch-when="5">{{widget.text}}</h1>
-                <h1 ng-switch-when="6">{{widget.text}}</h1>
-            </div>
+<!--wam-widgets wam-sortable-->
+<div wam-sortable class="container-fluid list-group relative-position zero-right-padding">
 
 
-            <div ng-switch-when="IMAGE">
-                <ng-include src="widget-image.view.client.html"></ng-include>
-                <img class="img-responsive" ng-src="{{model.checkSafeImageUrl(widget.url)}}" alt="Sample Image"/>
-            </div>
+    <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets " class="wam-widget">
 
-            <div ng-switch-when="YOUTUBE" class="embed-responsive embed-responsive-16by9">
-                <ng-include src="widget-youtube.view.client.html"></ng-include>
-                <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}" frameborder="0"
-                        allowfullscreen ></iframe>
-            </div>
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"
+           class="glyphiconPositionRight">
+            <span class="glyphicon glyphicon-cog"></span>
+        </a>
 
-            <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
-                {{widget.text}}
-            </div>
+        <div ng-switch="widget.size" ng-switch-when="HEADER">
+            <ng-include src="widget-heading.view.client.html"></ng-include>
+            <h1 ng-switch-when="1">{{widget.text}}</h1>
+            <h2 ng-switch-when="2">{{widget.text}}</h2>
+            <h3 ng-switch-when="3">{{widget.text}}</h3>
+            <h4 ng-switch-when="4">{{widget.text}}</h4>
+            <h5 ng-switch-when="5">{{widget.text}}</h5>
+            <h6 ng-switch-when="6">{{widget.text}}</h6>
+        </div>
+
+
+        <div ng-switch-when="IMAGE">
+            <ng-include src="widget-image.view.client.html"></ng-include>
+            <img class="img-responsive" ng-src="{{model.checkSafeImageUrl(widget.url)}}" alt="Sample Image"/>
+        </div>
+
+        <div ng-switch-when="YOUTUBE" class="embed-responsive embed-responsive-16by9">
+            <ng-include src="widget-youtube.view.client.html"></ng-include>
+            <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}" frameborder="0"
+                    allowfullscreen></iframe>
+        </div>
+
+        <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
+            {{widget.text}}
         </div>
     </div>
-
-
 </div>
+
+
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
 
@@ -68,4 +69,17 @@
     </div>
 </nav>
 
-
+<!--<script src="../../jQuery/jquery-3.1.1.js"></script>-->
+<!--<script src="../../jQuery/jquery-ui-1.12.1/jquery-ui.js"></script>-->
+<!--<script>-->
+    <!--&lt;!&ndash;$(function () {&ndash;&gt;-->
+<!--//        var ul = $("ul");-->
+<!--//        console.log(ul);-->
+<!--//        var li = $("<li>item 234</li>");-->
+<!--//        ul.append(li);-->
+<!--//        ul.append("<li>item 123</li>");-->
+<!--//        ul.sortable();-->
+<!--//        $(".wam-widgets").sortable();-->
+<!--//        $(".test3").sortable();-->
+    <!--});-->
+<!--</script>-->
