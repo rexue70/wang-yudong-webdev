@@ -52,12 +52,38 @@
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
-        vm.widget = {"type": null, "_page": null, "size": null, "text": null};
+
+        // _page: {type: mongoose.Schema.Types.ObjectId, ref: "PageModel"},
+        // type: {type: String, enum: ['HEADER', 'IMAGE', 'YOUTUBE', 'HTML', 'TEXT']},
+        // name: String,
+        //     text: String,
+        //     placeholder: String,
+        //     description: String,
+        //     url: String,
+        //     width: String,
+        //     height: String,
+        //     rows: Number,
+        //     size: Number,
+        //     class: String,
+        //     icon: String,
+        //     deletable: Boolean,
+        //     formatted: Boolean,
+        //     dateCreated: {type: Date, default: Date.now}
+
+
+        vm.widget = {
+            "type": null,
+            "_page": null,
+            "rows": 0,
+            "size": 0,
+            "text": null,
+            "deletable": false,
+            "formatted": false
+        };
         vm.createWidget = createWidget;
 
         function createWidget(type) {
             vm.widget.type = type;
-            // vm.widget._id = (new Date()).getTime();
             vm.widget._page = vm.pid;
             console.log("#1");
             console.log(vm.widget);
@@ -82,10 +108,13 @@
 
 
         function init() {
+
             WidgetService
                 .findWidgetById(vm.wgid)
                 .success(function (widget) {
-                    vm.widget = widget
+                    vm.widget = widget;
+                    // vm.widget.rows = Integer.valueOf(widget.rows);
+
                 });
             WidgetService
                 .findWidgetsByPageId(vm.pid)
@@ -96,11 +125,17 @@
 
         init();
         function updateWidget(widget) {
-            WidgetService
-                .updateWidget(widget)
-                .success(function () {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/");
-                });
+            console.log(widget);
+            console.log(widget.name);
+            if (widget.name == undefined || widget.name == "") {
+                vm.error = "widget name can not be empty."
+            } else {
+                WidgetService
+                    .updateWidget(widget)
+                    .success(function () {
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/");
+                    });
+            }
         }
 
         function deleteWidget(wgid) {

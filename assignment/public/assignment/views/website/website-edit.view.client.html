@@ -18,6 +18,12 @@
     </div>
 </nav>
 
+<div ng-show = "model.error" class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{model.error}}
+</div>
+
 <div class="container-fluid">
 
     <div class="row">

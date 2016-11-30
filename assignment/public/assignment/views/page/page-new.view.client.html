@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-9 col-md-9 navbar-collapsed">
                 <a class="navbar-brand glyphiconPositionLeft white-color">New Page</a>
-                <a class="navbar-brand glyphiconPositionRight white-color" ng-click ="model.createPage(page)">
+                <a class="navbar-brand glyphiconPositionRight white-color" ng-click ="model.createPage(name,description)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -23,7 +23,11 @@
 </nav>
 
 
-
+<div ng-show = "model.error" class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{model.error}}
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -48,10 +52,10 @@
 
             <div class="form-group">
                 <label for="name">Name</label>
-                <input ng-model="page.name" type="text" class="form-control" id="name"
+                <input ng-model="name" type="text" class="form-control" id="name"
                        placeholder="Page Name">
                 <label for="title">Description</label>
-                <input ng-model="page.description" type="text" class="form-control" id="title"
+                <input ng-model="description" type="text" class="form-control" id="title"
                        placeholder="Page Title">
             </div>
         </div>

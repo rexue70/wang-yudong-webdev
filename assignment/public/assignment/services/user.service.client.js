@@ -11,11 +11,36 @@
             findUser: findUser,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            unregisterUser: unregisterUser
+            unregisterUser: unregisterUser,
+            login: login,
+            checkLogin: checkLogin,
+            logout: logout,
+            register : register
         };
         return api;
 
-        function findUser(username,password) {
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
+        
+        function checkLogin() {
+            return $http.post("/api/checkLogin");
+        }
+
+        function login(username, password) {
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post("/api/login", user);
+        }
+
+        function findUser(username, password) {
             var url = '/api/user?username=' + username + '&password=' + password;
             console.log("client");
             console.log(url);

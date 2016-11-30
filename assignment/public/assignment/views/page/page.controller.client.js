@@ -14,7 +14,7 @@
             PageService
                 .findPagesByWebsiteId(vm.websiteId)
                 .success(function (website) {
-                    vm.pages =website.pages;
+                    vm.pages = website.pages;
                 });
         }
 
@@ -38,14 +38,18 @@
 
         init();
 
-        function createPage(page) {
-            console.log("#1");
-            console.log(page);
-            PageService
-                .createPage(websiteId, page)
-                .success(function () {
-                    $location.url("/user/" + userId + "/website/" + websiteId + "/page");
-                });
+        function createPage(name, description) {
+            console.log(name);
+            if (typeof(name) === "undefined") {
+                vm.error = "page name can not be empty."
+            } else {
+                var page = {name: name, description: description};
+                PageService
+                    .createPage(websiteId, page)
+                    .success(function () {
+                        $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+                    });
+            }
         }
     }
 
@@ -62,7 +66,7 @@
         vm.websiteId = websiteId;
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
-            function init() {
+        function init() {
             PageService
                 .findPageById(pageId)
                 .success(function (page) {
@@ -78,11 +82,15 @@
         init();
 
         function updatePage(page) {
-            PageService
-                .updatePage(page)
-                .success(function () {
-                    $location.url("/user/" + userId + "/website/" + websiteId + "/page");
-                });
+            if (page.name == undefined || page.name == "") {
+                vm.error = "page name can not be empty."
+            } else {
+                PageService
+                    .updatePage(page)
+                    .success(function () {
+                        $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+                    });
+            }
         }
 
         function deletePage(pid) {

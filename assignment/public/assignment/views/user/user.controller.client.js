@@ -10,43 +10,52 @@
         vm.login = login;
 
         function login(username, password) {
-            console.log("first step");
-            UserService
-                .findUser(username, password)
-                .success(function (user) {
-                    console.log("receive back");
-                     console.log(user);
-                     console.log("receive back");
-                    if (user == '0') {
-                        vm.error = "No such user"
-                    } else {
-                        $location.url("/user/" + user._id);
-                    }
-                })
-                .error(function (user) {
-                    console.log(user);
-                });
-
+            if (typeof(username) === "undefined") {
+                vm.error = "UserName can not be empty."
+            } else if (typeof(password) === "undefined") {
+                vm.error = "Password can not be empty."
+            } else {
+                var promise = UserService.login(username, password);
+                console.log(promise);
+                promise
+                    .success(function (user) {
+                        console.log("back");
+                        if (user === '0') {
+                            vm.error = "No such user"
+                        } else {
+                            $location.url("/user/" + user._id);
+                        }
+                    })
+                    .error(function (user) {
+                        console.log("error");
+                        console.log(user);
+                    });
+            }
         }
     }
 
-    function RegisterController(UserService, $location) {
+    function RegisterController(UserService, $location, $rootScope) {
         var vm = this;
         vm.createUser = createUser;
-        function createUser(user) {
-
-            if (user.password != user.password2) {
-                vm.error = "Your password is different, please type again!"
+        function createUser(username, password, password2) {
+            if (typeof(username) === "undefined") {
+                vm.error = "UserName can not be empty."
+            } else if (typeof(password) === "undefined") {
+                vm.error = "Password can not be empty."
             } else {
-                UserService
-                    .createUser(user.username, user.password)
-                    .success(function (user) {
-                        $location.url("/user/" + user._id);
-                    })
-                    .error(function (error) {
-                        vm.error = "Can not create the user";
-                    });
-
+                if (password != password2) {
+                    vm.error = "Your password is different, please type again!"
+                } else {
+                    UserService
+                        .createUser(username, password)
+                        .success(function (user) {
+                            $rootScope.currentUser = user;
+                            $location.url("/user/" + user._id);
+                        })
+                        .error(function (error) {
+                            vm.error = "Can not create the user";
+                        });
+                }
             }
         }
     }
@@ -59,12 +68,15 @@
 
         vm.updateUser = updateUser;
         vm.unregisterUser = unregisterUser;
+        vm.logout = logout;
+
+
         function init() {
             UserService
                 .findUserById(vm.userId)
                 .success(function (user) {
 
-                        vm.user = user;
+                    vm.user = user;
 
 
                 })
@@ -75,6 +87,12 @@
 
         init();
 
+        function logout() {
+            UserService.logout()
+                .success(function () {
+                    $location.url("/login");
+                });
+        }
 
         function updateUser() {
             console.log(vm.user);

@@ -1,6 +1,14 @@
+<div class="form-group">
+    <label for="name">Name</label>
+    <input ng-model = "model.widget.name" type="text" class="form-control" id="name" placeholder="">
+</div>
+
 <div ng-model="model.widget.text"
      text-angular
      ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
         ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
         ['indent','outdent'],['html']]">
 </div>
+<br>
+<a class="btn btn-danger  btn-block"
+   ng-click = "model.deleteWidget(model.widget._id)">Delete</a>

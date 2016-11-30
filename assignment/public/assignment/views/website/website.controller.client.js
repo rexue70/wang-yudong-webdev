@@ -38,12 +38,17 @@
 
         init();
 
-        function createWebsite(website) {
-            WebsiteService
-                .createWebsite(userId, website)
-                .success(function () {
-                    $location.url("/user/" + userId + "/website");
-                });
+        function createWebsite(name, description) {
+            if (typeof(name) === "undefined") {
+                vm.error = "website name can not be empty."
+            } else {
+                var website = {name: name, description: description};
+                WebsiteService
+                    .createWebsite(userId, website)
+                    .success(function () {
+                        $location.url("/user/" + userId + "/website");
+                    });
+            }
         }
 
     }
@@ -76,11 +81,16 @@
         init();
 
         function updateWebsite(website) {
-            WebsiteService
-                .updateWebsite(website)
-                .success(function () {
-                    $location.url("/user/" + userId + "/website");
-                })
+            if (website.name == undefined || website.name=="") {
+                vm.error = "website name can not be empty."
+            } else {
+                WebsiteService
+                    .updateWebsite(website)
+                    .success(function () {
+                        $location.url("/user/" + userId + "/website");
+                    })
+            }
+
         }
 
         function deleteWebsite(wid) {

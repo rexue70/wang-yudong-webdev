@@ -4,7 +4,7 @@
            href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="navbar-brand white-color glyphiconPositionLeft white-color" href="#">Edit Widget</a>
+        <a class="navbar-brand white-color glyphiconPositionLeft white-color">Edit Widget</a>
         <a class="navbar-brand glyphiconPositionRight white-color"
            ng-click="model.updateWidget(model.widget)">
             <span class="glyphicon glyphicon-ok"></span>
@@ -12,9 +12,16 @@
     </div>
 </nav>
 
+
+<div ng-show = "model.error" class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{model.error}}
+</div>
+
 <div class="container-fluid">
     <form ng-if="model.widget.type">
-        {{model.widget}}
+        <!--{{model.widget}}-->
         <div ng-include="'views/widget/widget-'+ model.widget.type.toLowerCase() + '.view.client.html'"></div>
     </form>
 </div>

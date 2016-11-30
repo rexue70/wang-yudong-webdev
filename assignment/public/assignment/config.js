@@ -22,7 +22,11 @@
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    checkLogin: checkLogin
+                    // isMyFriend: isMyFriend
+                }
             })
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website-list.view.client.html",
@@ -78,6 +82,40 @@
                 redirectTo: "/login",
                 controller: "LoginController",
                 controllerAs: "model"
-            })
+            });
+
+
+        function checkLogin($q, UserService, $location) {
+            var deferred = $q.defer();
+            UserService
+                .checkLogin()
+                .success(
+                    function (user) {
+                        if (user != '0') {
+                            deferred.resolve();
+                        } else {
+                            deferred.reject();
+                            $location.url("/login");
+                        }
+                    }
+                );
+            return deferred.promise;
+        }
+
+
+        // var checkLogin = function($q, $timeout, $http, $location, $rootScope) {
+        //     var deferred = $q.defer();
+        //     $http.get('/api/login').success(function(user) {
+        //         $rootScope.errorMessage = null;
+        //         if (user != '0') {
+        //             $rootScope.currentUser = user;
+        //             deferred.resolve();
+        //         } else {
+        //             deferred.reject();
+        //             $location.url('/');
+        //         }
+        //     });
+        //     return deferred.promise;
+        // };
     }
 })();

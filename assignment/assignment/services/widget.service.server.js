@@ -45,6 +45,8 @@ module.exports = function (app, model) {
             "_id": widgetId,
             "name": filename,
             "type": "IMAGE",
+            rows:0,
+            size:0,
             "text": req.body.text,
             "url": newUrl,
             "width": width,

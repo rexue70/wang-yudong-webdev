@@ -10,12 +10,12 @@ module.exports = function () {
         url: String,
         width: String,
         height: String,
-        rows: String,
-        size: String,
+        rows: Number,
+        size: Number,
         class: String,
         icon: String,
-        deletable: String,
-        formatted: String,
+        deletable: Boolean,
+        formatted: Boolean,
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "widget"});
     return WidgetSchema;
