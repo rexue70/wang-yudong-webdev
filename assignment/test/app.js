@@ -4,7 +4,8 @@ module.exports = function(app)
     app.post("/api/test", createMessage);
     app.delete("/api/test/:id", deleteMessage);
 
-    var connectionString = 'mongodb://yudong:yudong@ds033086.mlab.com:33086/yudong';
+    // var connectionString = 'mongodb://yudong:yudong@ds033086.mlab.com:33086/yudong';
+    // var connectionString = "mongodb://localhost/wam-fall-2016";
 
     if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
         connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +

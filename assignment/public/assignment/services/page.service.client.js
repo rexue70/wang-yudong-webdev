@@ -13,13 +13,15 @@
         };
         return api;
 
-        function createPage(page) {
-            var url = "/api/website/" + page.websiteId + "/page";
+        function createPage(websiteId, page) {
+            console.log("create page sc");
+            var url = "/api/website/" + websiteId + "/page";
+            console.log(url);
             return $http.post(url, page);
         }
 
         function findPagesByWebsiteId(websiteId) {
-            var url = "/api/website/" + websiteId + "/page";
+             var url = "/api/website/" + websiteId + "/page";
             return $http.get(url);
         }
 

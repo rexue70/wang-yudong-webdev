@@ -8,17 +8,26 @@
             createUser: createUser,
             findUserById: findUserById,
             findUserByCredentials: findUserByCredentials,
+            findUser: findUser,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
             unregisterUser: unregisterUser
         };
         return api;
 
+        function findUser(username,password) {
+            var url = '/api/user?username=' + username + '&password=' + password;
+            console.log("client");
+            console.log(url);
+            console.log("client");
+            return $http.get(url);
+        }
+
         function createUser(username, password) {
             var objUser = {
                 username: username,
-                passord: password
-            }
+                password: password
+            };
             return $http.post("/api/user", objUser);
         }
 
@@ -39,7 +48,11 @@
 
 
         function findUserByCredentials(username, password) {
-            var url = '/api/user?username=' + username + '&password' + password;
+            console.log("client");
+            console.log(username);
+            console.log(username);
+
+            var url = '/api/user?username=' + username + '&password=' + password;
             return $http.get(url);
         }
 

@@ -7,14 +7,14 @@
 
     function PageListController($routeParams, PageService) {
         var vm = this;
-        vm.userId = parseInt($routeParams.uid);
-        vm.websiteId = parseInt($routeParams.wid);
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
 
         function init() {
             PageService
                 .findPagesByWebsiteId(vm.websiteId)
-                .success(function (pages) {
-                    vm.pages = pages;
+                .success(function (website) {
+                    vm.pages =website.pages;
                 });
         }
 
@@ -23,26 +23,26 @@
 
     function NewPageController($routeParams, PageService, $location) {
         var vm = this;
-        var userId = parseInt($routeParams.uid);
-        var websiteId = parseInt($routeParams.wid);
+        var userId = $routeParams.uid;
+        var websiteId = $routeParams.wid;
         vm.userId = userId;
         vm.websiteId = websiteId;
         vm.createPage = createPage;
         function init() {
             PageService
                 .findPagesByWebsiteId(websiteId)
-                .success(function (pages) {
-                    vm.pages = pages;
+                .success(function (website) {
+                    vm.pages = website.pages;
                 })
         }
 
         init();
 
         function createPage(page) {
-            page._id = (new Date()).getTime();
-            page.websiteId = websiteId;
+            console.log("#1");
+            console.log(page);
             PageService
-                .createPage(page)
+                .createPage(websiteId, page)
                 .success(function () {
                     $location.url("/user/" + userId + "/website/" + websiteId + "/page");
                 });
@@ -53,8 +53,8 @@
     function EditPageController($routeParams, PageService, $location) {
 
         var vm = this;
-        var userId = parseInt($routeParams.uid);
-        var websiteId = parseInt($routeParams.wid);
+        var userId = $routeParams.uid;
+        var websiteId = $routeParams.wid;
         var pageId = $routeParams.pid;
 
         vm.pageId = pageId;
@@ -70,8 +70,8 @@
                 });
             PageService
                 .findPagesByWebsiteId(websiteId)
-                .success(function (pages) {
-                    vm.pages = pages;
+                .success(function (website) {
+                    vm.pages = website.pages;
                 });
         }
 

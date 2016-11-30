@@ -13,8 +13,9 @@
 </nav>
 
 <div class="container-fluid">
-    <form ng-if="model.widget.widgetType">
-        <div ng-include="'views/widget/widget-'+ model.widget.widgetType.toLowerCase() + '.view.client.html'"></div>
+    <form ng-if="model.widget.type">
+        {{model.widget}}
+        <div ng-include="'views/widget/widget-'+ model.widget.type.toLowerCase() + '.view.client.html'"></div>
     </form>
 </div>
 

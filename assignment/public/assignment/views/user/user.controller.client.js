@@ -10,12 +10,14 @@
         vm.login = login;
 
         function login(username, password) {
-            var promise = UserService.findUserByCredentials(username, password);
-            promise
+            console.log("first step");
+            UserService
+                .findUser(username, password)
                 .success(function (user) {
-                    console.log("it is successful");
-                    console.log(user);
-                    if (user === '0') {
+                    console.log("receive back");
+                     console.log(user);
+                     console.log("receive back");
+                    if (user == '0') {
                         vm.error = "No such user"
                     } else {
                         $location.url("/user/" + user._id);
@@ -52,7 +54,7 @@
     function ProfileController($location, $routeParams, UserService) {
         var vm = this;
 
-        vm.userId = parseInt($routeParams.uid);
+        vm.userId = $routeParams.uid;
 
 
         vm.updateUser = updateUser;
@@ -61,9 +63,10 @@
             UserService
                 .findUserById(vm.userId)
                 .success(function (user) {
-                    if (user != '0') {
+
                         vm.user = user;
-                    }
+
+
                 })
                 .error(function () {
 
@@ -88,7 +91,7 @@
                 .error(function () {
 
                 });
-            
+
         }
     }
 

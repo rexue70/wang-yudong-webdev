@@ -8,23 +8,22 @@
 
     function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
-        vm.userId = parseInt($routeParams.uid);
+        vm.userId = $routeParams.uid;
 
         function init() {
             WebsiteService
                 .findWebsitesByUser(vm.userId)
-                .success(function (websites) {
-                    vm.websites = websites;
+                .success(function (user) {
+                    vm.websites = user.websites;
                 });
         }
-
         init();
     }
 
     function NewWebsiteController($routeParams, WebsiteService, $location) {
         var vm = this;
-        var userId = parseInt($routeParams.uid);
-        var websiteId = parseInt($routeParams.websiteId);
+        var userId = $routeParams.uid;
+        var websiteId = $routeParams.websiteId;
         vm.userId = userId;
         vm.createWebsite = createWebsite;
 
@@ -32,17 +31,14 @@
         function init() {
             var promise = WebsiteService.findWebsitesByUser(vm.userId);
             promise
-                .success(function (websites) {
-                    vm.websites = websites;
+                .success(function (user) {
+                    vm.websites = user.websites;
                 });
         }
 
         init();
 
         function createWebsite(website) {
-            website._id = (new Date()).getTime();
-            website.developerId = userId;
-
             WebsiteService
                 .createWebsite(userId, website)
                 .success(function () {
@@ -54,8 +50,8 @@
 
     function EditWebsiteController($routeParams, WebsiteService, $location) {
         var vm = this;
-        var websiteId = parseInt($routeParams.wid);
-        var userId = parseInt($routeParams.uid);
+        var websiteId = $routeParams.wid;
+        var userId = $routeParams.uid;
         vm.userId = userId;
 
         vm.updateWebsite = updateWebsite;
@@ -68,12 +64,13 @@
                         vm.website = website;
                     }
                 });
-            WebsiteService.findWebsitesByUser(userId)
-                .success(function (websites) {
-                    if (websites != '0') {
-                        vm.websites = websites;
-                    }
+
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .success(function (user) {
+                    vm.websites = user.websites;
                 });
+
         }
 
         init();

@@ -16,17 +16,12 @@
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
         vm.checkSafeImageUrl = checkSafeImageUrl;
         function init() {
-            // var widgets2 = $(".wam-widgets");
-            // console.log(widgets2);
             WidgetService
                 .findWidgetsByPageId(vm.pid)
                 .success(function (widgets) {
                     vm.widgets = widgets;
                 });
-
         }
-
-
 
         init();
 
@@ -39,11 +34,14 @@
         }
 
         function checkSafeYouTubeUrl(url) {
-            var parts = url.split('/');
-            var id = parts[parts.length - 1];
+            if (url != undefined){
+                var parts = url.split('/');
+                var id = parts[parts.length - 1];
 
-            url = "https://www.youtube.com/embed/" + id;
-            return $sce.trustAsResourceUrl(url);
+                url = "https://www.youtube.com/embed/" + id;
+                return $sce.trustAsResourceUrl(url);
+            }
+
         }
     }
 
@@ -53,18 +51,20 @@
         vm.wid = $routeParams.wid;
         vm.pid = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
-        vm.widget = {"_id": null, "widgetType": null, "pageId": null, "size": null, "text": null};
+        vm.widget = {"type": null, "_page": null, "size": null, "text": null};
         vm.createWidget = createWidget;
 
-        function createWidget(widgetType) {
-            vm.widget.widgetType = widgetType;
-            vm.widget._id = (new Date()).getTime();
-            vm.widget.pageId = vm.pid;
-
+        function createWidget(type) {
+            vm.widget.type = type;
+            // vm.widget._id = (new Date()).getTime();
+            vm.widget._page = vm.pid;
+            console.log("#1");
+            console.log(vm.widget);
             WidgetService
                 .createWidget(vm.widget)
-                .success(function () {
-                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + vm.widget._id);
+                .success(function (widgetId) {
+                    console.log("receive widgetid in choose" + widgetId);
+                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + widgetId);
                 });
         }
     }

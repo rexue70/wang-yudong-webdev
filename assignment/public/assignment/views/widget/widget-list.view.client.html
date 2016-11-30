@@ -17,12 +17,16 @@
 <div wam-sortable class="container-fluid list-group relative-position zero-right-padding">
 
 
-    <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets " class="wam-widget">
+    <div ng-switch="widget.type" ng-repeat="widget in model.widgets " class="wam-widget">
 
         <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"
            class="glyphiconPositionRight">
             <span class="glyphicon glyphicon-cog"></span>
         </a>
+
+
+
+
 
         <div ng-switch="widget.size" ng-switch-when="HEADER">
             <ng-include src="widget-heading.view.client.html"></ng-include>
@@ -34,21 +38,41 @@
             <h6 ng-switch-when="6">{{widget.text}}</h6>
         </div>
 
+        <div ng-switch-when="TEXT">
+            TEXT
+            <div ng-if="widget.formatted" text-angular ta-toolbar="..."></div>
+            <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                   placeholder="{{widget.textInput.placeholder}}" class="form-control"/>
+            <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                      rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                      class="form-control">{{widget.text}}</textarea>
+        </div>
+
+
 
         <div ng-switch-when="IMAGE">
+            IMAGE
             <ng-include src="widget-image.view.client.html"></ng-include>
             <img class="img-responsive" ng-src="{{model.checkSafeImageUrl(widget.url)}}" alt="Sample Image"/>
         </div>
 
-        <div ng-switch-when="YOUTUBE" class="embed-responsive embed-responsive-16by9">
+        <div ng-switch-when="YOUTUBE" class="youtube-widget embed-responsive embed-responsive-16by9">
+            YOUTUBE
             <ng-include src="widget-youtube.view.client.html"></ng-include>
-            <iframe width="560" height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}" frameborder="0"
+            <iframe ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}" frameborder="0"
                     allowfullscreen></iframe>
         </div>
 
         <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
+            HTML
             {{widget.text}}
         </div>
+        <!--<div ng-switch-when="HTML" ng-model="model.widget.text"-->
+             <!--text-angular-->
+             <!--ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],-->
+        <!--['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],-->
+        <!--['indent','outdent'],['html']]">-->
+        <!--</div>-->
     </div>
 </div>
 
