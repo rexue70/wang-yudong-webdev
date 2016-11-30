@@ -7,17 +7,17 @@
             .when("/", {
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
-                controllerAs : "model"
+                controllerAs: "model"
             })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
-                controllerAs : "model"
+                controllerAs: "model"
             })
             .when("/register", {
                 templateUrl: "views/user/register.view.client.html",
                 controller: "RegisterController",
-                controllerAs : "model"
+                controllerAs: "model"
             })
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
@@ -69,10 +69,15 @@
                 controller: "EditWidgetController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/searchImage", {
+                templateUrl: "views/widget/widget-flickr-search.view.client.html",
+                controller: "FlickrSearchController",
+                controllerAs: "model"
+            })
             .otherwise({
-                redirectTo : "/login",
+                redirectTo: "/login",
                 controller: "LoginController",
-                controllerAs : "model"
+                controllerAs: "model"
             })
     }
 })();
