@@ -31,7 +31,7 @@ module.exports = function (app, model) {
 
     function register(req, res) {
         var user = req.body;
-        user.password = bcrypt.hashSync(user.password);
+        // user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
             .then(
@@ -80,23 +80,30 @@ module.exports = function (app, model) {
     }
 
     function localStrategy(username, password, done) {
+
+        // console.log("#3 local strategy");
+        // console.log(username);
+        // console.log(password);
+        // console.log("#3 local strategy");
         model
             .userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function (user) {
+                    // console.log("receive back");
+                    // console.log(user);
+                    // console.log("inside the local strategy");
+                    // console.log(password);
+                    // // console.log(user.password);
+                    // console.log("inside the local strategy");
                     if (user) {
-                        if (!user) {
+                        if(user && bcrypt.compareSync(password, user.password)) {
+                            return done(null, user);
+                        } else {
                             return done(null, false);
                         }
-                        return done(null, user);
-                        // if(user && bcrypt.compareSync(password, user.password)) {
-                        //     return done(null, user);
-                        // } else {
-                        //     return done(null, false);
-                        // }
                     } else {
-                        res.send('0');
+                        return done(null, false);
                     }
                 },
                 function (error) {
@@ -114,7 +121,7 @@ module.exports = function (app, model) {
 
     function createUser(req, res) {
         var user = req.body;
-        // user.password = bcrypt.hashSync(user.password);
+        user.password = bcrypt.hashSync(user.password);
 
         model
             .userModel
@@ -146,7 +153,8 @@ module.exports = function (app, model) {
         var username = req.query.username;
         var password = req.query.password;
         model
-            .userModel.findUserByCredentials(username, password)
+            .userModel
+            .findUserByCredentials(username, password)
             .then(
                 function (users) {
                     if (users) {

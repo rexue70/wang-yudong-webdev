@@ -37,14 +37,18 @@
                 username: username,
                 password: password
             };
+            // console.log("#2 client service");
+            // console.log(username);
+            // console.log(password);
+            // console.log("#2 client service");
             return $http.post("/api/login", user);
         }
 
         function findUser(username, password) {
             var url = '/api/user?username=' + username + '&password=' + password;
-            console.log("client");
-            console.log(url);
-            console.log("client");
+            // console.log("client");
+            // console.log(url);
+            // console.log("client");
             return $http.get(url);
         }
 

@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="GreatNeighborhood">
 <head>
+
+    <link href="jQuery/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="jQuery/jquery-3.1.1.js"></script>
+    <script src="jQuery/jquery-ui-1.12.1/jquery-ui.js"></script>
     <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <title>Title</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.13/textAngular.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.13/textAngular-rangy.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.13/textAngular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.13/textAngular.min.js"></script>
+
+
+    <script src = "services/search.service.client.js"></script>
+
+
+    <script src = "views/search/search.controller.client.js"></script>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <h1>Project Home Page</h1>
+<div ng-view>
+    <a href="#/search">Search</a>
+</div>
 </body>
 </html>

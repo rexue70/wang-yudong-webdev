@@ -6,12 +6,12 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/search",{
-                templateUrl :"views/search/search.view.html",
+                templateUrl :"views/search/search.view.client.html",
                 controller: "MovieSearchController",
                 controllerAs: "model"
             })
             .when("/search/:title",{
-                templateUrl :"views/search/search.view.html",
+                templateUrl :"views/search/search.view.client.html",
                 controller: "MovieSearchController",
                 controllerAs: "model"
             })

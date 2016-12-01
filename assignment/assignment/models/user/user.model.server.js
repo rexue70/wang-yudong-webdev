@@ -23,7 +23,10 @@ module.exports = function () {
     }
 
     function findUserByUsername(username) {
-        return UserModel.find({
+        // console.log("#4 findUserByUsername model");
+        // console.log(username);
+        // console.log("#4 findUserByUsername");
+        return UserModel.findOne({
             username: username
         });
     }
@@ -42,6 +45,10 @@ module.exports = function () {
 
 
     function findUserByCredentials(username, password) {
+        console.log("#4 findUserByCredentials model");
+        console.log(username);
+        console.log(password);
+        console.log("#4 findUserByCredentials");
         return UserModel.findOne({
             username: username,
             password: password

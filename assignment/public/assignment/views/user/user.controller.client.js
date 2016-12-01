@@ -15,11 +15,15 @@
             } else if (typeof(password) === "undefined") {
                 vm.error = "Password can not be empty."
             } else {
+                // console.log("#1 controller");
+                // console.log(username);
+                // console.log(password);
+                // console.log("#1 controller");
                 var promise = UserService.login(username, password);
-                console.log(promise);
                 promise
                     .success(function (user) {
-                        console.log("back");
+                        console.log("illegal receive back?");
+                        console.log(user);
                         if (user === '0') {
                             vm.error = "No such user"
                         } else {
@@ -29,6 +33,7 @@
                     .error(function (user) {
                         console.log("error");
                         console.log(user);
+                        vm.error = "Wrong user name or password!";
                     });
             }
         }
