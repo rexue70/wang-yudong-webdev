@@ -1,0 +1,67 @@
+
+
+<nav class="navbar navbar-fixed-top navbar-light bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand glyphiconPositionLeft puple-color" href="#/user/{{model.userId}}/search">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="navbar-brand col-m-6 glyphiconPositionRight puple-color" href="#/user/{{model.userId}}/website/new">
+            <span class=" glyphicon glyphicon-plus"></span>
+            <div class="navbar-header">
+                <a class="navbar-brand puple-color" href="#/user/{{model.userId}}/website/">Search</a>
+            </div>
+        </a>
+    </div>
+
+</nav>
+
+
+<div class="row">
+    <div class="col-sm-3 col-md-3 hidden-xs">
+        <ul class="list-unstyled left-colon">
+            <li><h3>Map</h3></li>
+            <li><a href="#/user/{{model.userId}}/weather/{{model.street}}/{{model.city}}/{{model.state}}"><h3>Weather</h3></a></li>
+            <li><a href="#/user/{{model.userId}}/school/{{model.street}}/{{model.city}}/{{model.state}}"><h3>School</h3></a></li>
+            <li><a href="#/user/{{model.userId}}/hospital/{{model.street}}/{{model.city}}/{{model.state}}"><h3>Hospital</h3></a></li>
+            <li><a href="http://localhost:8080/GreatNegihborHoods/Address?userId={{model.userId}}&&AddressId={{model.addressId}}"><h3>Detail</h3></a></li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-md-9">
+
+        <h1 ng-if="!model.success">Loading...Please wait.</h1>
+
+
+        <h1 ng-if="model.success">Virtual Map</h1>
+        <iframe width="750" height="550" frameborder="0" style="border:0"
+                ng-if="model.success"
+                ng-src="{{model.checkSafeUrl()}}"
+                allowfullscreen></iframe>
+
+        <h1 ng-if="model.success">Actual StreetView</h1>
+        <iframe width="750" height="550" frameborder="0" style="border:0"
+                ng-if="model.success"
+                ng-src="{{model.checkSafeUrl5()}}"
+                allowfullscreen></iframe>
+
+
+        <!--<h1 ng-if="model.success">Satellite View</h1>-->
+        <!--<iframe width="600" height="450" frameborder="0" style="border:0"-->
+                <!--ng-if="model.success"-->
+                <!--ng-src="{{model.checkSafeUrl2()}}"-->
+                <!--allowfullscreen></iframe>-->
+        <!--src="https://www.google.com/maps/embed/v1/place?q=7432 4th Ave NE&key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0"-->
+        <!--{{model.result}}-->
+    </div>
+</div>
+
+
+<nav class="navbar bg-success navbar-fixed-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand glyphiconPositionRight" href="#/user/{{model.userId}}">
+            <span class="glyphicon glyphicon-user puple-color"></span>
+        </a>
+
+    </div>
+</nav>
+
+

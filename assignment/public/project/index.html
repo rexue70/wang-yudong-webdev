@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="GreatNeighborhood">
 <head>
-
-    <link href="jQuery/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="jQuery/jquery-3.1.1.js"></script>
     <script src="jQuery/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script src="http://pupunzi.com/mb.components/mb.YTPlayer/demo/inc/jquery.mb.YTPlayer.js"></script>
+    <link href="jQuery/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Buenard:700' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
     <meta charset="UTF-8">
     <title>Title</title>
 
-
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -27,9 +33,18 @@
 
 
     <script src = "services/search.service.client.js"></script>
+    <script src = "services/user.service.client.js"></script>
+    <script src = "services/weather.service.client.js"></script>
+
+
 
 
     <script src = "views/search/search.controller.client.js"></script>
+    <script src = "views/user/user.controller.client.js"></script>
+    <script src = "views/result/result.controller.client.js"></script>
+    <script src = "views/weather/weather.controller.client.js"></script>
+    <script src = "views/hospital/hospital.controller.client.js"></script>
+    <script src = "views/school/school.controller.client.js"></script>
 
 
 
@@ -37,7 +52,7 @@
 </head>
 <body>
 <div ng-view>
-    <a href="#/search">Search</a>
+    <a href="#/project/login">Search</a>
 </div>
 </body>
 </html>

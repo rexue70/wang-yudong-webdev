@@ -3,25 +3,31 @@
         .module("GreatNeighborhood")
         .controller("searchController", searchController);
 
-    function searchController(NeighborhoodService, $routeParams, $location, $http) {
+    function searchController(NeighborhoodService, $location, $routeParams) {
         var vm = this;
-        vm.title = $routeParams.title;
         this.search = search;
+        var userId = $routeParams.uid;
+
 
         function init() {
         }
+
         init();
 
-        function search(title) {
+
+        function search(place) {
             console.log("hello from controller");
-            NeighborhoodService
-                .search(title)
-                .success(function (result) {
-                    vm.neighbors = result;
-                    console.log("here");
-                    console.log(result);
-                })
+            console.log(place);
+            // console.log(place.street);
+            console.log("hello from controller");
+
+            $location.url("/user/" + userId + "/result/" + place.street + "/" + place.city + "/" + place.state);
+
+
         }
+
+
     }
 
-})();
+})
+();
