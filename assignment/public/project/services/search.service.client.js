@@ -40,7 +40,7 @@
                 // console.log(response.data.result.addressMatches[0].geographies["Census Blocks"][0].GEOID);
                 var addressId = response.data.result.addressMatches[0].geographies["Census Blocks"][0].GEOID;
                 var shortAddressId = addressId.substring(0, 11);
-                console.log(shortAddressId);
+                console.log("we have the 11 digit number = " + shortAddressId);
                 var place = {"place":response, "addressId":shortAddressId};
                 return place;
             }, function errorCallback(response) {
