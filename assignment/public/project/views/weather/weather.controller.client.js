@@ -13,7 +13,7 @@
         vm.city = city;
         vm.state = state;
         vm.street = $routeParams.street;
-
+        vm.addressId = $routeParams.addressId;
 
 
 

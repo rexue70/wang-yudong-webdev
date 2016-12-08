@@ -17,6 +17,7 @@
         vm.city = city;
         vm.state = state;
         vm.street = street;
+        vm.addressId = $routeParams.addressId;
         vm.checkSafeUrl3 = checkSafeUrl3;
 
         console.log(userId);
@@ -35,7 +36,7 @@
                     zipcode.num = result.place.data.result.addressMatches[0].addressComponents.zip;
                     vm.result = result;
                     vm.map = "https://www.google.com/maps/embed/v1/place?q=" + place.street + "&key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0";
-                    $location.url("/user/" + userId + "/school/" + place.street + "/" + place.city + "/" + place.state);
+                    $location.url("/user/" + userId + "/school/" + place.street + "/" + place.city + "/" + place.state + "/" + vm.addressId);
                 });
 
             // https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=hospital&key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0

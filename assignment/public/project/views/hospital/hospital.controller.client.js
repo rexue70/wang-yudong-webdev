@@ -17,7 +17,7 @@
         vm.city = city;
         vm.state = state;
         vm.street = street;
-
+        vm.addressId = $routeParams.addressId;
         vm.checkSafeUrl4 = checkSafeUrl4;
 
 
@@ -38,7 +38,7 @@
                     zipcode.num = result.place.data.result.addressMatches[0].addressComponents.zip;
                     vm.result = result;
                     vm.map = "https://www.google.com/maps/embed/v1/place?q=" + place.street + "&key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0";
-                    $location.url("/user/" + userId + "/hospital/" + place.street + "/" + place.city + "/" + place.state);
+                    $location.url("/user/" + userId + "/hospital/" + place.street + "/" + place.city + "/" + place.state + "/" + vm.addressId);
                 })
         }
 

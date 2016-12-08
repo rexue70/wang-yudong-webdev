@@ -38,18 +38,18 @@
                 controller: "ResultController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/hospital/:street/:city/:state", {
+            .when("/user/:uid/hospital/:street/:city/:state/:addressId", {
                 templateUrl: "views/hospital/hospital.view.client.html",
                 controller: "HospitalController",
                 controllerAs: "model"
             })
 
-            .when("/user/:uid/school/:street/:city/:state", {
+            .when("/user/:uid/school/:street/:city/:state/:addressId", {
                 templateUrl: "views/school/school.view.client.html",
                 controller: "SchoolController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/weather/:street/:city/:state", {
+            .when("/user/:uid/weather/:street/:city/:state/:addressId", {
                 templateUrl: "views/weather/weather.view.client.html",
                 controller: "WeatherController",
                 controllerAs: "model"
