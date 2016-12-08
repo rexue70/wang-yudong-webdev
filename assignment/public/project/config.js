@@ -43,6 +43,7 @@
                 controller: "HospitalController",
                 controllerAs: "model"
             })
+
             .when("/user/:uid/school/:street/:city/:state", {
                 templateUrl: "views/school/school.view.client.html",
                 controller: "SchoolController",

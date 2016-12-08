@@ -1,3 +1,9 @@
+<script src="//www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="//www.amcharts.com/lib/3/serial.js"></script>
+<script src="//www.amcharts.com/lib/3/themes/light.js"></script>
+<script src="//www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+<script src="//www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+
 <nav class="navbar navbar-fixed-top navbar-light bg-success">
     <div class="container-fluid">
         <a class="navbar-brand glyphiconPositionLeft puple-color" href="#/user/{{model.userId}}/search">
@@ -14,20 +20,22 @@
 </nav>
 
 
-<div class="row">
+<div class="row inMeddle">
 
     <div class="col-sm-3 col-md-3 hidden-xs">
         <ul class="list-unstyled left-colon">
-            <li><a href="#/user/{{model.userId}}/result/{{model.street}}/{{model.city}}/{{model.state}}"><h3>Map</h3></a></li>
-            <li><h3>Weather</h3></li>
-            <li><a href="#/user/{{model.userId}}/school/{{model.street}}/{{model.city}}/{{model.state}}"><h3>School</h3></a></li>
-            <li><a href="#/user/{{model.userId}}/hospital/{{model.street}}/{{model.city}}/{{model.state}}"><h3>Hospital</h3></a></li>
-             <li><h3>Detail</h3></li>
+            <li><a href="#/user/{{model.userId}}/result/{{model.street}}/{{model.city}}/{{model.state}}"><btn class = "btn btn-lg btn-warning btn-block">Map</btn></a></li>
+            <li><a href="#/user/{{model.userId}}/weather/{{model.street}}/{{model.city}}/{{model.state}}"><btn class = "btn btn-lg btn-warning btn-block">Weather</btn></a></li>
+            <li><a href="#/user/{{model.userId}}/school/{{model.street}}/{{model.city}}/{{model.state}}"><btn class = "btn btn-lg btn-warning btn-block">School</btn></a></li>
+            <li><a href="#/user/{{model.userId}}/hospital/{{model.street}}/{{model.city}}/{{model.state}}"><btn class = "btn btn-lg btn-warning btn-block">Hospital</btn></a></li>
+            <li><a href="http://localhost:8080/GreatNeighborHood/Address?userId={{model.userId}}&&AddressId={{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Scores</btn></a></li>
         </ul>
     </div>
 
     <div class="col-sm-9 col-md-9">
 
+
+        <div id="chartdiv"></div>
 
         <h3>{{model.weather.current_observation.weather}}</h3>
         <img  width="150" height="150" class="img-responsive"
@@ -95,11 +103,6 @@
         </table>
 
 
-
-        <!--{{model.weather}}-->
-
-
-
     </div>
 </div>
 
@@ -114,3 +117,118 @@
 </nav>
 
 
+<script>
+
+    var chart = AmCharts.makeChart("chartdiv", {
+        "type": "serial",
+        "theme": "light",
+        "autoMarginOffset": 30,
+        "dataProvider": [{
+            "country": "Washington D. C.",
+            "visits": 46,
+            "color": "#CD0D74"
+        },{
+            "country": "Atlanta",
+            "visits": 53,
+            "color": "#FF0F00"
+        }, {
+            "country": "Austin",
+            "visits": 48,
+            "color": "#FF6600"
+        }, {
+            "country": "Boston",
+            "visits": 41,
+            "color": "#FF9E01"
+        }, {
+            "country": "Chicago",
+            "visits": 27,
+            "color": "#FCD202"
+        }, {
+            "country": "Columbus",
+            "visits": 38,
+            "color": "#F8FF01"
+        }, {
+            "country": "Dallas",
+            "visits": 49,
+            "color": "#B0DE09"
+        }, {
+            "country": "Denver",
+            "visits": 19,
+            "color": "#04D215"
+        }, {
+            "country": "Filadelfia",
+            "visits": 43,
+            "color": "#0D8ECF"
+        }, {
+            "country": "Houston",
+            "visits": 55,
+            "color": "#0D52D1"
+        }, {
+            "country": "Indianápolis",
+            "visits": 32,
+            "color": "#2A0CD0"
+        }, {
+            "country": "Lincoln",
+            "visits": 21,
+            "color": "#8A0CCF"
+        }, {
+            "country": "Los Ángeles",
+            "visits": 57,
+            "color": "#CD0D74"
+        }, {
+            "country": "New York",
+            "visits": 43,
+            "color": "#CD0D74"
+        }, {
+            "country": "Phoenix",
+            "visits": 59,
+            "color": "#CD0D74"
+        }, {
+            "country": "San Diego",
+            "visits": 59,
+            "color": "#CD0D74"
+        }],
+        "valueAxes": [{
+            "axisAlpha": 0,
+            "position": "left"
+        }],
+        "startDuration": 1,
+        "graphs": [{
+            "balloonText": "<b>[[category]]: [[value]]</b>",
+            "fillColorsField": "color",
+            "fillAlphas": 0.9,
+            "lineAlpha": 0.2,
+            "type": "column",
+            "valueField": "visits"
+        }],
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "country",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "labelRotation": 45
+        },
+        "allLabels": [{
+            "text": "Cities",
+            "x": "!20",
+            "y": "!20",
+            "width": "50%",
+            "size": 15,
+            "bold": true,
+            "align": "right"
+        }, {
+            "text": "Temperature Fahrenheit",
+            "rotation": 270,
+            "x": "10",
+            "y": "10",
+            "width": "50%",
+            "size": 15,
+            "bold": true,
+            "align": "right"
+        }]
+
+    });
+</script>

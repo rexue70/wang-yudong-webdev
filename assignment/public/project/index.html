@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="GreatNeighborhood">
 <head>
+
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/examples/export.config.default.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="jQuery/jquery-3.1.1.js"></script>
     <script src="jQuery/jquery-ui-1.12.1/jquery-ui.js"></script>
@@ -50,7 +59,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body >
 <div ng-view>
     <a href="#/project/login">Search</a>
 </div>

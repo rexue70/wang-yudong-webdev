@@ -14,7 +14,12 @@
         vm.state = state;
         vm.street = $routeParams.street;
 
+
+
+
         function init() {
+
+
             WeatherService
                 .findWeather(state, city)
                 .success(function (res) {
