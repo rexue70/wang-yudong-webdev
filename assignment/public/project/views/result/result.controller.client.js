@@ -41,7 +41,7 @@
                     console.log("here");
                     console.log(result);
                     vm.addressId = result.place.data.result.addressMatches[0].geographies["Census Blocks"][0].GEOID.substring(0, 11);
-                    console.log(vm.addressId);
+                    console.log("we assign the addressId as " + vm.addressId);
                     vm.success = true;
                     coord.x = result.place.data.result.addressMatches[0].coordinates.x;
                     coord.y = result.place.data.result.addressMatches[0].coordinates.y;
@@ -49,6 +49,9 @@
                     vm.result = result;
                     vm.map = "https://www.google.com/maps/embed/v1/place?q=" + place.street + "&key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0";
                     $location.url("/user/" + userId + "/result/" + place.street + "/" + place.city + "/" + place.state);
+                },
+                function (error) {
+                    console.log("error");
                 })
         }
 
