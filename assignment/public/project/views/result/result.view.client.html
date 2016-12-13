@@ -5,7 +5,7 @@
         <a class="navbar-brand glyphiconPositionLeft puple-color" href="#/user/{{model.userId}}/search">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="navbar-brand col-m-6 glyphiconPositionRight puple-color" href="#/user/{{model.userId}}/website/new">
+        <a class="navbar-brand col-m-6 glyphiconPositionRight puple-color" href="#/user/{{model.userId}}">
             <span class=" glyphicon glyphicon-user"></span>
             <div class="navbar-header">
                 <a class="navbar-brand puple-color" href="#/user/{{model.userId}}/website/">Search</a>
@@ -23,16 +23,18 @@
             <li><a href="#/user/{{model.userId}}/weather/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Weather</btn></a></li>
             <li><a href="#/user/{{model.userId}}/school/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">School</btn></a></li>
             <li><a href="#/user/{{model.userId}}/hospital/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Hospital</btn></a></li>
+            <li><a href="#/user/{{model.userId}}/restaurant/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Restaurant</btn></a></li>
+            <li><a href="#/user/{{model.userId}}/market/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Market</btn></a></li>
             <!--{{model.userId}}-->
             <!--{{model.addressId}}-->
-            <li><a href="http://localhost:8080/GreatNeighborHood/Address?userId={{model.userId}}&&AddressId={{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Scores</btn></a></li>
         </ul>
     </div>
     <div class="col-sm-9 col-md-9">
 
         <button ng-if="!model.success" class="btn btn-block btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...Please wait.</button>
-
-
+        <button ng-if="model.isAdmin" class="btn btn-block btn-warning"> If you are seeing this, you are loggin as an Admin, you can use the debug mode to see the json file behind</button>
+        <button ng-if="model.isAdmin"> {{model}}</button>
+        <p ng-if="model.isAmin">{{model.}}</p>
         <h1 ng-if="model.success">Virtual Map</h1>
         <iframe width="750" height="550" frameborder="0" style="border:0"
                 ng-if="model.success"

@@ -12,6 +12,8 @@
 <div class="container inMeddle">
     <br>
     <br>
+    <button ng-if="model.user.isAdmin" class="btn btn-block btn-warning">If you are seeing this, you are login as an Admin</button>
+
     <form>
         <div class="form-group">
             <label for="username">Username</label>
@@ -32,6 +34,10 @@
         <div class="form-group">
             <label for="last-name">Last Name</label>
             <input ng-model = "model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
+        </div>
+        <div class="form-group">
+            <label for="admin">Admin</label>
+            <input ng-model = "model.user.isAdmin" class="form-control" id="admin" placeholder="type in 'true' for admin or leave empty for normal user">
         </div>
     </form>
 

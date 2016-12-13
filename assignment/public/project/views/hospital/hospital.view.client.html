@@ -3,8 +3,8 @@
         <a class="navbar-brand glyphiconPositionLeft puple-color" href="#/user/{{model.userId}}/search">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <a class="navbar-brand col-m-6 glyphiconPositionRight puple-color" href="#/user/{{model.userId}}/website/new">
-            <span class=" glyphicon glyphicon-plus"></span>
+        <a class="navbar-brand col-m-6 glyphiconPositionRight puple-color" href="#/user/{{model.userId}}">
+            <span class=" glyphicon glyphicon-user" href="#/user/{{model.userId}}"></span>
             <div class="navbar-header">
                 <a class="navbar-brand puple-color" href="#/user/{{model.userId}}/website/">Search</a>
             </div>
@@ -21,9 +21,11 @@
             <li><a href="#/user/{{model.userId}}/weather/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Weather</btn></a></li>
             <li><a href="#/user/{{model.userId}}/school/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">School</btn></a></li>
             <li><a href="#/user/{{model.userId}}/hospital/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Hospital</btn></a></li>
+            <li><a href="#/user/{{model.userId}}/restaurant/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Restaurant</btn></a></li>
+            <li><a href="#/user/{{model.userId}}/market/{{model.street}}/{{model.city}}/{{model.state}}/{{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Market</btn></a></li>
             <!--{{model.userId}}-->
             <!--{{model.addressId}}-->
-            <li><a href="http://localhost:8080/GreatNeighborHood/Address?userId={{model.userId}}&&AddressId={{model.addressId}}"><btn class = "btn btn-lg btn-warning btn-block">Scores</btn></a></li>
+
         </ul>
     </div>
     <div class="col-sm-9 col-md-9">
@@ -39,15 +41,4 @@
 
     </div>
 </div>
-
-
-<nav class="navbar bg-success navbar-fixed-bottom">
-    <div class="container-fluid">
-        <a class="navbar-brand glyphiconPositionRight" href="#/user/{{model.userId}}">
-            <span class="glyphicon glyphicon-user puple-color"></span>
-        </a>
-
-    </div>
-</nav>
-
 

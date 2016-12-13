@@ -7,7 +7,7 @@
         var vm = this;
         this.search = search;
         var userId = $routeParams.uid;
-
+        vm.userId = userId;
 
         function init() {
         }

@@ -28,12 +28,14 @@
         </ul>
     </div>
     <div class="col-sm-9 col-md-9">
+
         <button ng-if="!model.success" class="btn btn-block btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...Please wait.</button>
 
-        <h1 ng-if="model.success">Nearby School</h1>
+
+        <h1 ng-if="model.success">Nearby Restaurant</h1>
         <iframe width="750" height="550" frameborder="0" style="border:0"
                 ng-if="model.success"
-                ng-src="{{model.checkSafeUrl3()}}"
+                ng-src="{{model.checkSafeUrl4()}}"
                 allowfullscreen></iframe>
 
     </div>

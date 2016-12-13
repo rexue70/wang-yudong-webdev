@@ -65,7 +65,8 @@ module.exports = function () {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
-                    phone: user.phone
+                    phone: user.phone,
+                    isAdmin : user.isAdmin
                 }
             );
     }

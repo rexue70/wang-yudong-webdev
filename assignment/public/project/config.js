@@ -49,6 +49,16 @@
                 controller: "SchoolController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/restaurant/:street/:city/:state/:addressId", {
+                templateUrl: "views/restaurant/restaurant.view.client.html",
+                controller: "RestaurantController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/market/:street/:city/:state/:addressId", {
+                templateUrl: "views/market/market.view.client.html",
+                controller: "MarketController",
+                controllerAs: "model"
+            })
             .when("/user/:uid/weather/:street/:city/:state/:addressId", {
                 templateUrl: "views/weather/weather.view.client.html",
                 controller: "WeatherController",

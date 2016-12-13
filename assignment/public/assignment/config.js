@@ -29,7 +29,7 @@
                 }
             })
             .when("/user/:uid/website", {
-                templateUrl: "views/website/hospital.view.client.html",
+                templateUrl: "views/website/market.view.client.html",
                 controller: "WebsiteListController",
                 controllerAs: "model"
             })

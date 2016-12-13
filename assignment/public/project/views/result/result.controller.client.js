@@ -4,7 +4,7 @@
         .controller("ResultController", ResultController);
 
 
-    function ResultController($routeParams, NeighborhoodService, WeatherService, $location, $sce, $http) {
+    function ResultController($routeParams, UserService,NeighborhoodService, WeatherService, $location, $sce, $http) {
         var vm = this;
         vm.result = "Loading... Please wait patiently!";
 
@@ -18,8 +18,8 @@
         vm.state = state;
         vm.street = street;
         vm.checkSafeUrl = checkSafeUrl;
-        vm.checkSafeUrl2 = checkSafeUrl2;
-        vm.checkSafeUrl3 = checkSafeUrl3;
+        // vm.checkSafeUrl2 = checkSafeUrl2;
+        // vm.checkSafeUrl3 = checkSafeUrl3;
         // vm.checkSafeUrl4 = checkSafeUrl4;
         vm.checkSafeUrl5 = checkSafeUrl5;
 
@@ -34,6 +34,17 @@
         vm.addressId = 0;
         function init() {
 
+            UserService
+                .findUserById(vm.userId)
+                .success(function (user) {
+                    console.log("receive user "+ user);
+                    if(user.isAdmin == "true") {
+                        vm.isAdmin = true;
+                    }
+                })
+                .error(function () {
+
+                });
 
             NeighborhoodService
                 .search(place)
@@ -62,16 +73,16 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        function checkSafeUrl2() {
-
-            var url = "https://www.google.com/maps/embed/v1/view?key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0&center=" + coord.y + "," + coord.x + "&zoom=20&maptype=satellite";
-            return $sce.trustAsResourceUrl(url);
-        }
-
-        function checkSafeUrl3() {
-            var url = "https://www.google.com/maps/embed/v1/search?key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0&q=" + "school near" + zipcode.num;
-            return $sce.trustAsResourceUrl(url);
-        }
+        // function checkSafeUrl2() {
+        //
+        //     var url = "https://www.google.com/maps/embed/v1/view?key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0&center=" + coord.y + "," + coord.x + "&zoom=20&maptype=satellite";
+        //     return $sce.trustAsResourceUrl(url);
+        // }
+        //
+        // function checkSafeUrl3() {
+        //     var url = "https://www.google.com/maps/embed/v1/search?key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0&q=" + "school near" + zipcode.num;
+        //     return $sce.trustAsResourceUrl(url);
+        // }
         //
         // function checkSafeUrl4() {
         //     var url = "https://www.google.com/maps/embed/v1/search?key=AIzaSyD6TfeGbq0OZX86s45odgvXuaqhouSO8I0&q=" + "hospital near" + zipcode.num;
