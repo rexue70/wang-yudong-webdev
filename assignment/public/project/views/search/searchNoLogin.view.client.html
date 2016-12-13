@@ -165,8 +165,13 @@
 
       <!-- FOOTER -->
       <footer>
-        <p class="pull-right"><a href="http://getbootstrap.com/examples/carousel/#">Back to top</a></p>
-        <p>© 2016 Company, Inc. · <a href="http://getbootstrap.com/examples/carousel/#">Privacy</a> · <a href="http://getbootstrap.com/examples/carousel/#">Terms</a></p>
+        <p class="pull-right"><a href="#top" id ="backToTopBtn" class="well well-sm">Back to top</a></p>
+        <script>
+          $('#backToTopBtn').click(function(){
+            $('html,body').animate({scrollTop:0},'slow');return false;
+          });
+        </script>
+        <p>© 2016 Company, Inc. · Privacy · Terms</p>
       </footer>
 
     </div><!-- /.container -->
